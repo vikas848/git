@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       .mdiv{
+        margin-left: 440px;
+        width: 400px;
+        height: 600px;
+        padding: 10px 50px;
+        background-color: rgb(213, 244, 234);
+        box-shadow: 0 0 10px 3px;
+       }
+       .h1{
+        font-size: 25px;
+       }
+       .input{
+        height: 25px;
+        width: 250px;
+        background-color: rgba(248, 233, 223, 0.83);
+        font-size: 18px;
+       }
+       .btn{
+        height: 30px;
+        width: 80px;
+        border: 1px solid rgb(221, 7, 7);
+        background-color: rgb(33, 122, 245);
+        color: white;
+        font-size: 18px;
+       }
+      img{
+        border-radius: 50%;
+        margin-top: 15px;
+        width: 230px;
+        height: auto;
+        margin-left: 40px;
+       }
+       .a{
+        width: 400px;
+        height: 30px;
+        background-color: aqua;
+       }
+       .b{
+        width: 400px;
+        height: 150px;
+        background-color: aqua;
+       }
+       .c{
+        width: 400px;
+        height: 30px;
+        background-color: aqua;
+       }
+    </style>
+</head>
+
+<body>
+   
+    <div class="mdiv">
+        <h1 class="h1">Inter your github username</h1>
+        <input type="text" id="input" class="input">
+        <button id="btn" class="btn">click</button>
+        <img src="man.jpg" id="img" alt="">
+        <div  class="a"><h3>Name:<b id="name"></b></h3></div>
+        <div class="b"><h3>Bio:<b id="bio"></b></h3></div>
+        <div class="c"><h3>Followers:<b id="followers"></b></h3></div>
+    </div>
+    <script>
+        let btn = document.getElementById("btn");
+        btn.addEventListener("click", function () {
+
+            async function apidata() {
+                let vikas = document.getElementById("input").value;
+                let data = await fetch(`https://api.github.com/users/${vikas}`);
+                let devil = await data.json();
+
+                let myname = document.getElementById("name")
+                let myboi = document.getElementById("bio")
+                let myfollowers = document.getElementById("followers")
+                let myimg = document.getElementById("img")
+
+                myname.innerHTML = devil.name;
+                myboi.innerHTML = devil.bio;
+                myfollowers.innerHTML = devil.followers;
+                myimg.src = devil.avatar_url;
+            }
+            apidata()
+        })
+    </script>
+</body>
+
+</html>
